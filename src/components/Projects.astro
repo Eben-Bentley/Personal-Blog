@@ -8,7 +8,7 @@ interface Tech {
 
 interface Project {
   name: string;
-  description: string;
+  description?: string;
   githubUrl: string;
   technologies: Tech[];
 }
@@ -44,7 +44,9 @@ const { projects } = Astro.props;
             </a>
           </h3>
         </div>
-        <p class="text-[0.9375rem] sm:text-sm text-text-secondary leading-relaxed mb-3">{project.description}</p>
+        {project.description && (
+          <p class="text-[0.9375rem] sm:text-sm text-text-secondary leading-relaxed mb-3">{project.description}</p>
+        )}
 
         <div class="flex flex-wrap gap-5">
           {project.technologies.map((tech) => (
