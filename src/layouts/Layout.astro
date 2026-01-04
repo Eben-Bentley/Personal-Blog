@@ -4,9 +4,10 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 interface Props {
   title: string;
   name: string;
+  currentPath?: string;
 }
 
-const { title, name } = Astro.props;
+const { title, name, currentPath } = Astro.props;
 ---
 
 <!doctype html>
