@@ -1,0 +1,199 @@
+---
+---
+
+<div class="theme-toggle">
+  <button class="theme-btn-toggle" id="theme-toggle-btn">
+    <div class="current-color" id="current-color"></div>
+  </button>
+  <div class="theme-dropdown" id="theme-dropdown">
+    <button class="color-option" data-theme="blue" title="Blue">
+      <div class="color-circle" style="background: #3b82f6;"></div>
+    </button>
+    <button class="color-option" data-theme="green" title="Green">
+      <div class="color-circle" style="background: #10b981;"></div>
+    </button>
+    <button class="color-option" data-theme="orange" title="Orange">
+      <div class="color-circle" style="background: #f97316;"></div>
+    </button>
+    <button class="color-option" data-theme="mono" title="Black/White">
+      <div class="color-circle" style="background: linear-gradient(90deg, #000 50%, #fff 50%);"></div>
+    </button>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  const dropdown = document.getElementById('theme-dropdown');
+  const currentColor = document.getElementById('current-color');
+  const colorOptions = document.querySelectorAll('.color-option');
+  const root = document.documentElement;
+
+  const themeColors: Record<string, string> = {
+    blue: '#3b82f6',
+    green: '#10b981',
+    orange: '#f97316',
+    mono: 'linear-gradient(90deg, #000 50%, #fff 50%)'
+  };
+
+  function getStoredTheme() {
+    return localStorage.getItem('theme') || 'blue';
+  }
+
+  function updateCurrentColor(theme: string) {
+    if (currentColor) {
+      currentColor.style.background = themeColors[theme];
+    }
+  }
+
+  function applyTheme(themeName: string) {
+    root.classList.remove('green', 'orange', 'mono');
+
+    if (themeName !== 'blue') {
+      root.classList.add(themeName);
+    }
+
+    localStorage.setItem('theme', themeName);
+    updateCurrentColor(themeName);
+
+    colorOptions.forEach(btn => {
+      if (btn.getAttribute('data-theme') === themeName) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  applyTheme(getStoredTheme());
+
+  toggleBtn?.addEventListener('click', () => {
+    dropdown?.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!toggleBtn?.contains(e.target as Node) && !dropdown?.contains(e.target as Node)) {
+      dropdown?.classList.remove('open');
+    }
+  });
+
+  colorOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      const theme = button.getAttribute('data-theme');
+      if (theme) {
+        applyTheme(theme);
+        dropdown?.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+
+  .theme-btn-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+
+  .theme-btn-toggle:hover {
+    transform: scale(1.1);
+  }
+
+  .current-color {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .theme-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .theme-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .color-option {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .color-option:hover {
+    transform: scale(1.15);
+  }
+
+  .color-option.active::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 var(--accent);
+    }
+    70% {
+      box-shadow: 0 0 0 6px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  .color-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .theme-toggle {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .theme-btn-toggle,
+    .color-option {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+interface Props {
+  name: string;
+  currentPath?: string;
+}
+
+const { name, currentPath = '/' } = Astro.props;
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href="/" class="logo">
+      <span class="logo-text">{name}</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/" class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
+      <a href="/projects" class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`}>Projects</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.75rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+    }
+
+    .nav {
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+    }
+  }
+</style>

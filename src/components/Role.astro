@@ -1,0 +1,74 @@
+---
+import TechIcon from './TechIcon.astro';
+
+interface Tech {
+  name: string;
+  icon: string;
+}
+
+interface Props {
+  role: string;
+  company: string;
+  description: string;
+  techStack: Tech[];
+}
+
+const { role, company, description, techStack } = Astro.props;
+---
+
+<section class="section role-section">
+  <h2 class="section-title"><span class="section-number">01.</span> Current Role</h2>
+
+  <div class="role-header">
+    <h3 class="role-title">{role}</h3>
+    <p class="company-name">{company}</p>
+  </div>
+
+  <p class="role-description">{description}</p>
+
+  <div class="tech-stack">
+    <div class="tech-grid">
+      {techStack.map((tech) => (
+        <TechIcon name={tech.name} icon={tech.icon} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .role-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .role-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .company-name {
+    font-size: 0.9375rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .role-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+
+  @media (max-width: 768px) {
+    .tech-grid {
+      gap: 0.5rem;
+    }
+  }
+</style>

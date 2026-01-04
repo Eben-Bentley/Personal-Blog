@@ -1,0 +1,48 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<header class="header">
+  <div class="header-container">
+    <span class="logo-text">{name}</span>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.75rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+    }
+  }
+</style>

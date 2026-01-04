@@ -1,0 +1,78 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title: string;
+  name: string;
+}
+
+const { title, name } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function applyTheme(e) {
+        const root = document.documentElement;
+        if (e.matches) {
+          root.classList.add("dark");
+        } else {
+          root.classList.remove("dark");
+        }
+      }
+
+      applyTheme(darkModeQuery);
+
+      darkModeQuery.addEventListener("change", applyTheme);
+    </script>
+  </head>
+  <body>
+    <ThemeToggle />
+    <div class="animated-shape">
+      <div class="cube">
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+        <div class="cube-face">
+          <div class="orbit-circle"></div>
+          <div class="orbit-circle delay-1"></div>
+          <div class="orbit-circle delay-2"></div>
+        </div>
+      </div>
+    </div>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

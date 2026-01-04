@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Projects from '../components/Projects.astro';
+
+const projects = [
+  {
+    name: 'Snaphook',
+    description: 'Lightweight, high-performance screenshot utility for Windows built with Go',
+    githubUrl: 'https://github.com/Eben-Bentley/snaphook',
+    technologies: [
+      { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
+      { name: 'Bash', icon: 'https://www.svgrepo.com/show/376359/bash.svg' }
+    ],
+  }
+];
+---
+
+<Layout
+  title="Projects - Eben Bentley"
+  name="Eben Bentley"
+  currentPath="/projects"
+>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-description">A collection of my open source projects and side work</p>
+    </div>
+
+    <Projects projects={projects} />
+  </div>
+</Layout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+  }
+
+  .page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-description {
+      font-size: 1rem;
+    }
+  }
+</style>

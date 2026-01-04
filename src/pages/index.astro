@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Role from '../components/Role.astro';
+import Projects from '../components/Projects.astro';
+import Social from '../components/Social.astro';
+
+const techStack = [
+  { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
+  { name: 'Terraform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' },
+  { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+];
+
+const projects = [
+  {
+    name: 'Snaphook',
+    description: 'Lightweight, high-performance screenshot utility for Windows built with Go',
+    githubUrl: 'https://github.com/Eben-Bentley/snaphook',
+    technologies: [
+      { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
+      { name: 'Bash', icon: 'https://www.svgrepo.com/show/376359/bash.svg' }
+    ],
+  }
+];
+---
+
+<Layout
+  title="Eben Bentley - Software Engineer"
+  name="Eben Bentley"
+>
+  <div class="container">
+    <Hero
+      name="EBEN BENTLEY"
+      title="Title"
+      bio="Bio"
+    />
+
+    <Role
+      role="Title"
+      company="Company"
+      description="details"
+      techStack={techStack}
+    />
+
+    <Projects projects={projects} />
+
+    <Social />
+  </div>
+</Layout>
