@@ -13,7 +13,7 @@ const {
   title,
   name,
   currentPath,
-  description = "Software Engineer specializing in Go, Kubernetes, and cloud infrastructure. Building scalable solutions and open source tools.",
+  description = "Software Engineer specializing in Go, Kubernetes, and cloud infrastructure. Full-stack developer building scalable backend services, REST APIs, and cloud-native applications.",
   image = "/og-image.png"
 } = Astro.props;
 
@@ -44,6 +44,23 @@ const canonicalUrl = currentPath ? `${siteUrl}${currentPath}` : siteUrl;
     <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
     <meta name="author" content={name} />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Eben Bentley",
+        "url": "https://ebenbentley.dev",
+        "jobTitle": "Software Engineer",
+        "description": "Software Engineer specializing in Go, Kubernetes, and cloud infrastructure",
+        "knowsAbout": ["Go", "Kubernetes", "Cloud Infrastructure", "Docker", "React", "TypeScript", "PostgreSQL"],
+        "sameAs": [
+          "https://github.com/ebenbentley",
+          "https://linkedin.com/in/ebenbentley"
+        ]
+      }
+    </script>
+
     <script is:inline>
       const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
