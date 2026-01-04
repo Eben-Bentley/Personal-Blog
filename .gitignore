@@ -8,3 +8,4 @@ dist/
 .env.development.local
 .vscode/
 *.log
+.claude/settings.local.json
