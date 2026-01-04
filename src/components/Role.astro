@@ -32,7 +32,7 @@ const { role, company, description, techStack } = Astro.props;
     <div class="tech-grid">
       {techStack.map((tech) => (
         <div class="tech-item" aria-label={tech.name} tabindex="0">
-          <TechIcon name={tech.name} icon={tech.icon} />
+          <TechIcon icon={tech.icon} />
           <span class="tech-tooltip">{tech.name}</span>
         </div>
       ))}
