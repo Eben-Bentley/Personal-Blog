@@ -2,7 +2,6 @@
 import TechIcon from './TechIcon.astro';
 
 interface Tech {
-  name: string;
   icon: string;
 }
 
@@ -48,7 +47,7 @@ const { projects } = Astro.props;
 
         <div class="project-tech">
           {project.technologies.map((tech) => (
-            <TechIcon name={tech.name} icon={tech.icon} />
+            <TechIcon icon={tech.icon} />
           ))}
         </div>
       </div>
