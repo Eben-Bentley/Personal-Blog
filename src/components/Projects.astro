@@ -24,101 +24,103 @@ const { projects } = Astro.props;
   <h2 class="section-title"><span class="section-number">02.</span> Projects</h2>
 
   <div class="projects-list">
-{projects.map((project, idx) => (
-  <div class="project-item" key={`${project.name}-${idx}`}>
-    <div class="project-header">
-      <h3 class="project-name">
-        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-          {project.name}
-          <svg
-            class="external-link-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            fill="currentColor"
-          >
-            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/>
-            <path d="M5 5h9v2H6.41l9.3 9.29-1.42 1.42L5 6.41V15H3V5z" fill="none"/>
-          </svg>
-        </a>
-      </h3>
-    </div>
-    <p class="project-description">{project.description}</p>
+    {projects.map((project) => (
+      <div class="project-item">
+        <div class="project-header">
+          <h3 class="project-name">
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+              {project.name}
+              <svg
+                class="external-link-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="currentColor"
+              >
+                <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/>
+                <path d="M5 5h9v2H6.41l9.3 9.29-1.42 1.42L5 6.41V15H3V5z" fill="none"/>
+              </svg>
+            </a>
+          </h3>
+        </div>
+        <p class="project-description">{project.description}</p>
 
-    <div class="project-tech">
-      {project.technologies.map((tech) => (
-        <TechIcon name={tech.name} icon={tech.icon} key={tech.name} />
-      ))}
-    </div>
-  </div>
-))}
-
+        <div class="project-tech">
+          {project.technologies.map((tech) => (
+            <TechIcon name={tech.name} icon={tech.icon} />
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
 
 <style>
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+}
+
+.project-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.project-header {
+  margin-bottom: 0.375rem;
+}
+
+.project-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.project-name a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-name a:hover {
+  color: var(--accent);
+}
+
+.project-description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+@media (max-width: 768px) {
   .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .project-item {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1.25rem;
-  }
-
-  .project-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .project-header {
-    margin-bottom: 0.375rem;
+    gap: 1.25rem;
   }
 
   .project-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
-  }
-
-  .project-name a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .project-name a:hover {
-    color: var(--accent);
+    font-size: 0.875rem;
   }
 
   .project-description {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
   }
-
-  .project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.625rem;
-  }
-
-  @media (max-width: 768px) {
-    .projects-list {
-      gap: 1.25rem;
-    }
-
-    .project-name {
-      font-size: 0.875rem;
-    }
-
-    .project-description {
-      font-size: 0.875rem;
-    }
-  }
+}
 </style>
