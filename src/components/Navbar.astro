@@ -7,97 +7,19 @@ interface Props {
 const { name, currentPath = '/' } = Astro.props;
 ---
 
-<header class="header">
-  <div class="header-container">
-    <a href="/" class="logo">
-      <span class="logo-text">{name}</span>
+<header class="sticky top-0 z-[100] border-b border-border shadow-md" style="background: var(--bg-card); backdrop-filter: blur(10px); box-shadow: 0 2px 8px var(--shadow);">
+  <div class="max-w-[1400px] mx-auto px-8 py-4 flex justify-between items-center sm:px-4 sm:py-3">
+    <a href="/" class="no-underline">
+      <span class="text-xl sm:text-lg font-bold text-text-primary tracking-tight">{name}</span>
     </a>
 
-    <nav class="nav">
-      <a href="/" class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
-      <a href="/projects" class={`nav-link ${currentPath === '/projects' ? 'active' : ''}`}>Projects</a>
+    <nav class="flex gap-8 items-center sm:gap-6">
+      <a href="/" class={`text-text-secondary font-medium text-[0.9375rem] sm:text-sm transition-colors duration-200 relative hover:text-text-primary ${currentPath === '/' ? 'text-accent after:content-[\'\'] after:absolute after:bottom-[-0.5rem] after:left-0 after:right-0 after:h-0.5 after:bg-accent' : ''}`}>
+        Home
+      </a>
+      <a href="/projects" class={`text-text-secondary font-medium text-[0.9375rem] sm:text-sm transition-colors duration-200 relative hover:text-text-primary ${currentPath === '/projects' ? 'text-accent after:content-[\'\'] after:absolute after:bottom-[-0.5rem] after:left-0 after:right-0 after:h-0.5 after:bg-accent' : ''}`}>
+        Projects
+      </a>
     </nav>
   </div>
 </header>
-
-<style>
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px var(--shadow);
-  }
-
-  .header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    text-decoration: none;
-  }
-
-  .logo-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .nav {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .nav-link {
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.9375rem;
-    transition: color 0.2s ease;
-    position: relative;
-  }
-
-  .nav-link:hover {
-    color: var(--text-primary);
-  }
-
-  .nav-link.active {
-    color: var(--accent);
-  }
-
-  .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent);
-  }
-
-  @media (max-width: 768px) {
-    .header-container {
-      padding: 0.75rem 1rem;
-    }
-
-    .logo-text {
-      font-size: 1.125rem;
-    }
-
-    .nav {
-      gap: 1.5rem;
-    }
-
-    .nav-link {
-      font-size: 0.875rem;
-    }
-  }
-</style>

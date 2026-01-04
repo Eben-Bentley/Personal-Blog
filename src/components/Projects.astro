@@ -20,18 +20,18 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<section class="section projects-section">
+<section class="section">
   <h2 class="section-title"><span class="section-number">02.</span> Projects</h2>
 
-  <div class="projects-list">
+  <div class="flex flex-col gap-6">
     {projects.map((project) => (
-      <div class="project-item">
-        <div class="project-header">
-          <h3 class="project-name">
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+      <div class="border-b border-border pb-5 last:border-b-0 last:pb-0">
+        <div class="mb-1.5">
+          <h3 class="text-[0.9375rem] sm:text-sm font-semibold text-text-primary m-0">
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-text-primary no-underline transition-colors duration-200 hover:text-accent">
               {project.name}
               <svg
-                class="external-link-icon"
+                class="w-4 h-4"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="16"
@@ -44,83 +44,14 @@ const { projects } = Astro.props;
             </a>
           </h3>
         </div>
-        <p class="project-description">{project.description}</p>
+        <p class="text-[0.9375rem] sm:text-sm text-text-secondary leading-relaxed mb-3">{project.description}</p>
 
-        <div class="project-tech">
+        <div class="flex flex-wrap gap-5">
           {project.technologies.map((tech) => (
-            <TechIcon icon={tech.icon} />
+            <TechIcon icon={tech.icon} name={tech.name ?? ''} />
           ))}
         </div>
       </div>
     ))}
   </div>
 </section>
-
-<style>
-.projects-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.project-item {
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1.25rem;
-}
-
-.project-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.project-header {
-  margin-bottom: 0.375rem;
-}
-
-.project-name {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.project-name a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.project-name a:hover {
-  color: var(--accent);
-}
-
-.project-description {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-}
-
-@media (max-width: 768px) {
-  .projects-list {
-    gap: 1.25rem;
-  }
-
-  .project-name {
-    font-size: 0.875rem;
-  }
-
-  .project-description {
-    font-size: 0.875rem;
-  }
-}
-</style>

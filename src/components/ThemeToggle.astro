@@ -1,23 +1,25 @@
 ---
 ---
 
-<div class="theme-toggle">
-  <button class="theme-btn-toggle" id="theme-toggle-btn">
-    <div class="current-color" id="current-color"></div>
-  </button>
-  <div class="theme-dropdown" id="theme-dropdown">
-    <button class="color-option" data-theme="blue" title="Blue">
-      <div class="color-circle" style="background: #3b82f6;"></div>
+<div class="fixed top-8 right-8 sm:top-4 sm:right-4 z-[1000]">
+  <div class="relative">
+    <button class="w-9 h-9 sm:w-8 sm:h-8 rounded-full border-0 bg-transparent cursor-pointer p-0 transition-all duration-200 hover:scale-110 mr-2" id="theme-toggle-btn">
+      <div class="w-full h-full rounded-full shadow-md" id="current-color" style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);"></div>
     </button>
-    <button class="color-option" data-theme="green" title="Green">
-      <div class="color-circle" style="background: #10b981;"></div>
-    </button>
-    <button class="color-option" data-theme="orange" title="Orange">
-      <div class="color-circle" style="background: #f97316;"></div>
-    </button>
-    <button class="color-option" data-theme="mono" title="Black/White">
-      <div class="color-circle" style="background: linear-gradient(90deg, #000 50%, #fff 50%);"></div>
-    </button>
+    <div class="absolute top-[calc(100%+0.5rem)] right-0 bg-bg-primary rounded-xl p-2 flex flex-col gap-2 opacity-0 invisible -translate-y-2.5 transition-all duration-200 shadow-lg" id="theme-dropdown" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+      <button class="w-9 h-9 sm:w-8 sm:h-8 rounded-full border-0 bg-transparent cursor-pointer p-0 transition-all duration-200 relative hover:scale-[1.15] color-option" data-theme="blue" title="Blue">
+        <div class="w-full h-full rounded-full shadow-md" style="background: #3b82f6; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);"></div>
+      </button>
+      <button class="w-9 h-9 sm:w-8 sm:h-8 rounded-full border-0 bg-transparent cursor-pointer p-0 transition-all duration-200 relative hover:scale-[1.15] color-option" data-theme="green" title="Green">
+        <div class="w-full h-full rounded-full shadow-md" style="background: #10b981; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);"></div>
+      </button>
+      <button class="w-9 h-9 sm:w-8 sm:h-8 rounded-full border-0 bg-transparent cursor-pointer p-0 transition-all duration-200 relative hover:scale-[1.15] color-option" data-theme="orange" title="Orange">
+        <div class="w-full h-full rounded-full shadow-md" style="background: #f97316; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);"></div>
+      </button>
+      <button class="w-9 h-9 sm:w-8 sm:h-8 rounded-full border-0 bg-transparent cursor-pointer p-0 transition-all duration-200 relative hover:scale-[1.15] color-option" data-theme="mono" title="Black/White">
+        <div class="w-full h-full rounded-full shadow-md" style="background: linear-gradient(90deg, #000 50%, #fff 50%); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);"></div>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -67,12 +69,12 @@
   applyTheme(getStoredTheme());
 
   toggleBtn?.addEventListener('click', () => {
-    dropdown?.classList.toggle('open');
+    dropdown?.classList.toggle('dropdown-open');
   });
 
   document.addEventListener('click', (e) => {
     if (!toggleBtn?.contains(e.target as Node) && !dropdown?.contains(e.target as Node)) {
-      dropdown?.classList.remove('open');
+      dropdown?.classList.remove('dropdown-open');
     }
   });
 
@@ -81,81 +83,13 @@
       const theme = button.getAttribute('data-theme');
       if (theme) {
         applyTheme(theme);
-        dropdown?.classList.remove('open');
+        dropdown?.classList.remove('dropdown-open');
       }
     });
   });
 </script>
 
 <style>
-  .theme-toggle {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    z-index: 1000;
-  }
-
-  .theme-btn-toggle {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.2s ease;
-  }
-
-  .theme-btn-toggle:hover {
-    transform: scale(1.1);
-  }
-
-  .current-color {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-
-  .theme-dropdown {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    background: var(--bg-primary);
-    border-radius: 12px;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .theme-dropdown.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .color-option {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.2s ease;
-    position: relative;
-  }
-
-  .color-option:hover {
-    transform: scale(1.15);
-  }
-
   .color-option.active::after {
     content: '';
     position: absolute;
@@ -174,26 +108,6 @@
     }
     100% {
       box-shadow: 0 0 0 0 transparent;
-    }
-  }
-
-  .color-circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
-
-  @media (max-width: 768px) {
-    .theme-toggle {
-      top: 1rem;
-      right: 1rem;
-    }
-
-    .theme-btn-toggle,
-    .color-option {
-      width: 32px;
-      height: 32px;
     }
   }
 </style>
