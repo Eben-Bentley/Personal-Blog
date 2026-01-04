@@ -6,22 +6,63 @@ import Projects from '../components/Projects.astro';
 import Social from '../components/Social.astro';
 
 const techStack = [
+  // Languages
   { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
-  { name: 'Terraform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' },
-  { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
-  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'TypeScript', icon: 'https://brandlogos.net/wp-content/uploads/2023/07/typescript-logo_brandlogos.net_hg0qh.png' },
+
+  // Runtimes / Frameworks
+  { name: 'NodeJs', icon: 'https://cdn.iconscout.com/icon/free/png-512/free-nodejs-icon-svg-download-png-226034.png?f=webp&w=256' },
+
+  // APIs & Communication
+  { name: 'REST APIs', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
+
+  // Frontend
+  { name: 'React', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/React_Logo_SVG.svg/960px-React_Logo_SVG.svg.png' },
+
+  // Databases
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+
+  // Messaging & Async
+  { name: 'RabbitMQ', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg' },
+
+  // Containers & Orchestration
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg' },
+  { name: 'Red Hat', icon: 'https://images.seeklogo.com/logo-png/27/1/redhat-logo-png_seeklogo-273849.png' },
+
+  // Cloud Providers
   { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+  { name: 'Azure', icon: 'https://www.pngall.com/wp-content/uploads/15/Azure-Logo-PNG-Clipart.png' },
+
+  // Data / Search
+  { name: 'ElasticSearch', icon: 'https://cdn.iconscout.com/icon/free/png-512/free-elasticsearch-icon-svg-download-png-226094.png?f=webp&w=256' },
+  { name: 'OpenSearch', icon: 'https://icons.veryicon.com/png/o/miscellaneous/2022-complete-collection-of-alibaba-cloud/opensearch-open-search-1.png' },
+  { name: 'Azure Data Factory', icon: 'https://vectorseek.com/wp-content/uploads/2023/08/Azure-Data-Factory-Logo-Vector.svg-.png' },
+
+  // Infrastructure as Code
+  { name: 'Terraform', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg' },
+  { name: 'Ansible', icon: 'https://www.svgrepo.com/show/353399/ansible.svg' },
 ];
 
 const projects = [
   {
     name: 'Snaphook',
-    description: 'Lightweight, high-performance screenshot utility for Windows built with Go',
+    description: 'High-performance screenshot utility for Windows built with Go and Bash, demonstrating backend logic, CLI interface, and efficient system integration.',
     githubUrl: 'https://github.com/Eben-Bentley/snaphook',
     technologies: [
       { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
       { name: 'Bash', icon: 'https://www.svgrepo.com/show/376359/bash.svg' }
+    ],
+  },
+  {
+    name: 'Profile Website',
+    description: 'My public profle webpage',
+    githubUrl: 'https://github.com/Eben-Bentley/Personal-Blog',
+    technologies: [
+      { name: 'Astro', icon: 'https://img.icons8.com/?size=64&id=lckHFUP7nJhG&format=png' },
     ],
   }
 ];
@@ -31,22 +72,24 @@ const projects = [
   title="Eben Bentley - Software Engineer"
   name="Eben Bentley"
 >
-  <div class="container">
+  <div class="container max-w-4xl mx-auto space-y-16">
+
     <Hero
       name="EBEN BENTLEY"
-      title="Title"
-      bio="Bio"
+      title="Software Engineer"
+      bio="Design and deliver end-to-end software systems: from backend services and APIs, to full-stack applications, data-heavy services, and cloud-native infrastructure. Experienced across Go, Python, Node.js, TypeScript, React, Kubernetes, Docker, Terraform, AWS, and Azure. I focus on scalable, resilient, and secure solutions that solve real-world problems."
     />
 
     <Role
-      role="Title"
-      company="Company"
-      description="details"
+      role="Software Engineer"
+      company="Raytheon UK"
+      description="Develop and maintain full-stack systems, including high-availability backend services, REST APIs, automated data pipelines, and cloud infrastructure"
       techStack={techStack}
     />
 
     <Projects projects={projects} />
 
     <Social />
+
   </div>
 </Layout>
