@@ -5,7 +5,31 @@ import Role from '../components/Role.astro';
 import Projects from '../components/Projects.astro';
 import Social from '../components/Social.astro';
 
-const techStack = [
+// Types
+interface Tech {
+  name: string;
+  icon: string;
+}
+
+interface Project {
+  name: string;
+  description?: string;
+  githubUrl: string;
+  technologies: Tech[];
+}
+
+// Personal Information
+const PERSONAL_INFO = {
+  name: 'Eben Bentley',
+  displayName: 'EBEN BENTLEY',
+  title: 'Software Engineer',
+  company: 'Raytheon UK',
+  bio: 'Design and deliver end-to-end software systems: from backend services and APIs, to full-stack applications, data-heavy services, and cloud-native infrastructure. Experienced across Go, Python, Node.js, TypeScript, React, Kubernetes, Docker, Terraform, AWS, and Azure. I focus on scalable, resilient, and secure solutions that solve real-world problems.',
+  roleDescription: 'Develop and maintain full-stack systems, including high-availability backend services, REST APIs, automated data pipelines, and cloud infrastructure',
+} as const;
+
+// Tech Stack
+const techStack: Tech[] = [
   // Languages
   { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
@@ -35,7 +59,7 @@ const techStack = [
 
   // Cloud Providers
   { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
-  { name: 'Azure', icon: 'https://www.pngall.com/wp-content/uploads/15/Azure-Logo-PNG-Clipart.png' },
+  { name: 'Azure', icon: 'https://www.pngall.com/wp-content/uploads/15/Azure-Logo-PNG-Cliplet.png' },
 
   // Data / Search
   { name: 'ElasticSearch', icon: 'https://cdn.iconscout.com/icon/free/png-512/free-elasticsearch-icon-svg-download-png-226094.png?f=webp&w=256' },
@@ -47,7 +71,8 @@ const techStack = [
   { name: 'Ansible', icon: 'https://www.svgrepo.com/show/353399/ansible.svg' },
 ];
 
-const projects = [
+// Projects
+const projects: Project[] = [
   {
     name: 'Snaphook',
     description: 'Lightweight, high-performance screenshot utility for Windows built with Go',
@@ -68,21 +93,21 @@ const projects = [
 ---
 
 <Layout
-  title="Eben Bentley - Software Engineer"
-  name="Eben Bentley"
+  title={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
+  name={PERSONAL_INFO.name}
 >
   <div class="container max-w-4xl mx-auto space-y-16">
 
     <Hero
-      name="EBEN BENTLEY"
-      title="Software Engineer"
-      bio="Design and deliver end-to-end software systems: from backend services and APIs, to full-stack applications, data-heavy services, and cloud-native infrastructure. Experienced across Go, Python, Node.js, TypeScript, React, Kubernetes, Docker, Terraform, AWS, and Azure. I focus on scalable, resilient, and secure solutions that solve real-world problems."
+      name={PERSONAL_INFO.displayName}
+      title={PERSONAL_INFO.title}
+      bio={PERSONAL_INFO.bio}
     />
 
     <Role
-      role="Software Engineer"
-      company="Raytheon UK"
-      description="Develop and maintain full-stack systems, including high-availability backend services, REST APIs, automated data pipelines, and cloud infrastructure"
+      role={PERSONAL_INFO.title}
+      company={PERSONAL_INFO.company}
+      description={PERSONAL_INFO.roleDescription}
       techStack={techStack}
     />
 
