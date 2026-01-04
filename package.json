@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "astro": "^5.16.6",
