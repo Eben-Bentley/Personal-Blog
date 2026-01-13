@@ -13,7 +13,7 @@ const {
   title,
   name,
   currentPath,
-  description = "Software Engineer specializing in Go, Kubernetes, and cloud infrastructure. Full-stack developer building scalable backend services, REST APIs, and cloud-native applications.",
+  description = "Software Engineer specializing in backend services, cloud infrastructure, and microservices. Expert in Go, Python, TypeScript, Kubernetes, AWS, and Azure. Building scalable REST APIs and cloud-native applications.",
   image = "/og-image.png"
 } = Astro.props;
 
@@ -28,6 +28,7 @@ const canonicalUrl = currentPath ? `${siteUrl}${currentPath}` : siteUrl;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="Go backend engineer, Kubernetes engineer, cloud infrastructure developer, microservices, REST APIs, Python developer, TypeScript, AWS, Azure, Docker, software engineer" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -45,15 +46,19 @@ const canonicalUrl = currentPath ? `${siteUrl}${currentPath}` : siteUrl;
 
     <meta name="author" content={name} />
 
-    <script type="application/ld+json">
+    <script is:inline type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Eben Bentley",
         "url": "https://ebenbentley.dev",
         "jobTitle": "Software Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Raytheon UK"
+        },
         "description": "Software Engineer specializing in Go, Kubernetes, and cloud infrastructure",
-        "knowsAbout": ["Go", "Kubernetes", "Cloud Infrastructure", "Docker", "React", "TypeScript", "PostgreSQL"],
+        "knowsAbout": ["Go", "Python", "TypeScript", "Kubernetes", "Docker", "Cloud Infrastructure", "Microservices", "REST APIs", "React", "PostgreSQL", "AWS", "Azure"],
         "sameAs": [
           "https://github.com/ebenbentley",
           "https://linkedin.com/in/ebenbentley"

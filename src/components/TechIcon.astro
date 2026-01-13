@@ -8,6 +8,6 @@ const { name, icon } = Astro.props;
 ---
 
 <div class="relative flex flex-col items-center gap-1.5 transition-all duration-300 cursor-default p-1 group">
-  <img src={icon} alt={name} class="tech-icon" />
+  <img src={icon} alt={`${name} technology icon`} class="tech-icon" />
   <span class="text-[0.625rem] font-medium text-text-secondary text-center transition-[color,opacity] duration-200 opacity-0 absolute bottom-[-1.5rem] whitespace-nowrap bg-[var(--bg-card)] px-2 py-1 rounded pointer-events-none z-10 shadow-md group-hover:text-accent group-hover:opacity-100" style="background-color: var(--bg-card);">{name}</span>
 </div>
