@@ -187,6 +187,7 @@
   position: relative;
   transform-style: preserve-3d;
   animation: rotateCube 35s infinite linear;
+  will-change: transform;
 }
 
 .cube-face {
@@ -386,11 +387,11 @@
 }
 
 @keyframes rotateCube {
-  0% {
-    transform: rotateX(0deg) rotateY(0deg);
+  from {
+    transform: rotate3d(1, 1, 0, 0deg);
   }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg);
+  to {
+    transform: rotate3d(1, 1, 0, 360deg);
   }
 }
 

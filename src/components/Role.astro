@@ -31,7 +31,7 @@ const { role, company, description, techStack } = Astro.props;
   <div>
     <div class="flex flex-wrap gap-5">
       {techStack.map((tech) => (
-        <TechIcon icon={tech.icon} name={tech.name ?? ''} />
+        <TechIcon icon={tech.icon} name={tech.name ?? ''} loading="eager" />
       ))}
     </div>
   </div>

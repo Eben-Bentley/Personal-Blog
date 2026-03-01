@@ -8,5 +8,11 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  image: {
+    remotePatterns: [
+      { hostname: 'img.icons8.com' },
+      { hostname: 'icon.icepanel.io' },
+    ],
+  },
   integrations: [tailwind(), sitemap()],
 });

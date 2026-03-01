@@ -74,11 +74,19 @@ const techStack: Tech[] = [
 // Projects
 const projects: Project[] = [
   {
+    name: 'Goroutines',
+    description: 'Concurrent programming examples and patterns in Go. Demonstrates goroutines, channels, mutexes, semaphores, and best practices for building scalable concurrent applications.',
+    githubUrl: 'https://github.com/Eben-Bentley/goroutines',
+    technologies: [
+      { name: 'Go', icon: '/icons/go.svg' },
+    ],
+  },
+  {
     name: 'Snaphook',
     description: 'Lightweight screenshot tool built with Go for Windows. Features include hotkey support, clipboard integration, and minimal resource usage. Demonstrates concurrent programming and Win32 API integration.',
     githubUrl: 'https://github.com/Eben-Bentley/snaphook',
     technologies: [
-      { name: 'Go', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
+      { name: 'Go', icon: '/icons/go.svg' },
     ],
   },
   {
@@ -98,7 +106,7 @@ const projects: Project[] = [
   name={PERSONAL_INFO.name}
   description="Full-stack Software Engineer at Raytheon UK. Experienced in Go, Python, TypeScript, Kubernetes, and cloud platforms. View projects and skills."
 >
-  <div class="container max-w-4xl mx-auto space-y-16">
+<div class="container max-w-4xl mx-auto space-y-16">
 
     <Hero
       name={PERSONAL_INFO.displayName}

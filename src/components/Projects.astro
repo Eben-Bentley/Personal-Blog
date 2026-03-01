@@ -24,7 +24,7 @@ const { projects } = Astro.props;
   <h2 class="section-title"><span class="section-number">02.</span> Projects</h2>
 
   <div class="flex flex-col gap-6">
-    {projects.map((project) => (
+    {projects.map((project, index) => (
       <div class="border-b border-border pb-5 last:border-b-0 last:pb-0">
         <div class="mb-1.5">
           <h3 class="text-[0.9375rem] sm:text-sm font-semibold text-text-primary m-0">
@@ -50,7 +50,7 @@ const { projects } = Astro.props;
 
         <div class="flex flex-wrap gap-5">
           {project.technologies.map((tech) => (
-            <TechIcon icon={tech.icon} name={tech.name ?? ''} />
+            <TechIcon icon={tech.icon} name={tech.name ?? ''} loading={index === 0 ? "eager" : "lazy"} />
           ))}
         </div>
       </div>

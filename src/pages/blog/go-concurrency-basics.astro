@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+
+const post = {
+  title: 'Getting Started with Go Concurrency',
+  date: '2026-01-13',
+  tags: ['Go', 'Concurrency', 'Backend'],
+};
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+---
+
+<Layout
+  title={`${post.title} - Eben Bentley`}
+  name="Eben Bentley"
+  description="Learn the fundamentals of concurrent programming in Go using goroutines and channels. Explore patterns and best practices for building scalable applications."
+>
+  <Navbar name="Eben Bentley" currentPath="/blog" />
+
+  <div class="container max-w-3xl mx-auto px-8 py-16 sm:px-4">
+    <a href="/blog" class="inline-flex items-center gap-2 text-accent hover:underline mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Blog
+    </a>
+
+    <article class="prose prose-lg max-w-none">
+      <div class="space-y-4 mb-8">
+        <h1 class="text-5xl sm:text-4xl font-bold text-text-primary mb-4">{post.title}</h1>
+
+        <div class="flex items-center gap-3 text-text-secondary">
+          <time datetime={post.date}>{formatDate(post.date)}</time>
+          <span class="text-border">•</span>
+          <div class="flex gap-2">
+            {post.tags.map((tag) => (
+              <span class="px-2 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-border pt-8 space-y-6 text-text-primary">
+        <p class="text-lg leading-relaxed">
+          Concurrency is one of Go's most powerful features, enabling developers to write efficient,
+          scalable applications that can handle multiple tasks simultaneously. In this article, we'll
+          explore the fundamentals of concurrent programming in Go.
+        </p>
+
+        <h2 class="text-3xl font-bold mt-8 mb-4">What are Goroutines?</h2>
+        <p class="leading-relaxed">
+          Goroutines are lightweight threads managed by the Go runtime. Unlike traditional OS threads,
+          goroutines are extremely cheap to create and use minimal memory, making it practical to spawn
+          thousands or even millions of them in a single application.
+        </p>
+
+        <pre class="bg-card border border-border rounded-lg p-4 overflow-x-auto"><code class="text-sm">func main() {
+    go sayHello()
+    time.Sleep(100 * time.Millisecond)
+}
+
+func sayHello() {
+    fmt.Println("Hello from goroutine!")
+}</code></pre>
+
+        <h2 class="text-3xl font-bold mt-8 mb-4">Channels for Communication</h2>
+        <p class="leading-relaxed">
+          Channels are Go's way of allowing goroutines to communicate with each other and synchronize
+          their execution. They provide a type-safe way to send and receive values between goroutines.
+        </p>
+
+        <pre class="bg-card border border-border rounded-lg p-4 overflow-x-auto"><code class="text-sm">ch := make(chan string)
+
+go func() {
+    ch <- "Hello from channel!"
+}()
+
+msg := <-ch
+fmt.Println(msg)</code></pre>
+
+        <h2 class="text-3xl font-bold mt-8 mb-4">Synchronization Primitives</h2>
+        <p class="leading-relaxed">
+          The sync package provides essential synchronization primitives like WaitGroups, Mutexes, and
+          RWMutexes. These tools help coordinate goroutines and protect shared resources from race conditions.
+        </p>
+
+        <h2 class="text-3xl font-bold mt-8 mb-4">Best Practices</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Always close channels when you're done sending values</li>
+          <li>Use buffered channels to prevent goroutine blocking when appropriate</li>
+          <li>Avoid sharing memory by communicating; use channels instead of shared variables</li>
+          <li>Use context for cancellation and timeouts in concurrent operations</li>
+          <li>Be mindful of goroutine leaks and always ensure they terminate</li>
+        </ul>
+
+        <h2 class="text-3xl font-bold mt-8 mb-4">Conclusion</h2>
+        <p class="leading-relaxed">
+          Mastering concurrency in Go opens up powerful possibilities for building high-performance
+          applications. By understanding goroutines, channels, and synchronization primitives, you can
+          write code that efficiently utilizes modern multi-core processors while remaining safe and maintainable.
+        </p>
+
+        <p class="leading-relaxed">
+          Check out my <a href="https://github.com/Eben-Bentley/goroutines" class="text-accent hover:underline">goroutines repository</a> for
+          practical examples and patterns demonstrating these concepts in action.
+        </p>
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  article.prose {
+    color: var(--text-primary);
+  }
+
+  article.prose h2 {
+    color: var(--text-primary);
+  }
+
+  article.prose a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  article.prose a:hover {
+    text-decoration: underline;
+  }
+
+  article.prose code {
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+  }
+
+  article.prose ul li {
+    color: var(--text-primary);
+  }
+</style>

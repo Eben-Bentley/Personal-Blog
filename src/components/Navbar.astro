@@ -13,13 +13,5 @@ const { name, currentPath = '/' } = Astro.props;
       <span class="text-xl sm:text-lg font-bold text-text-primary tracking-tight">{name}</span>
     </a>
 
-    <nav class="flex gap-8 items-center sm:gap-6">
-      <a href="/" class={`text-text-secondary font-medium text-[0.9375rem] sm:text-sm transition-colors duration-200 relative hover:text-text-primary ${currentPath === '/' ? 'text-accent after:content-[\'\'] after:absolute after:bottom-[-0.5rem] after:left-0 after:right-0 after:h-0.5 after:bg-accent' : ''}`}>
-        Home
-      </a>
-      <a href="/projects" class={`text-text-secondary font-medium text-[0.9375rem] sm:text-sm transition-colors duration-200 relative hover:text-text-primary ${currentPath === '/projects' ? 'text-accent after:content-[\'\'] after:absolute after:bottom-[-0.5rem] after:left-0 after:right-0 after:h-0.5 after:bg-accent' : ''}`}>
-        Projects
-      </a>
-    </nav>
   </div>
 </header>
