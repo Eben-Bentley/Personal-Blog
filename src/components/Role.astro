@@ -1,19 +1,20 @@
 ---
-import TechIcon from './TechIcon.astro';
-
-interface Tech {
-  name?: string;
-  icon: string;
+interface PreviousRole {
+  role: string;
+  company: string;
+  logo?: string;
+  description: string;
 }
 
 interface Props {
   role: string;
   company: string;
+  logo?: string;
   description: string;
-  techStack: Tech[];
+  previousRoles?: PreviousRole[];
 }
 
-const { role, company, description, techStack } = Astro.props;
+const { role, company, logo, description, previousRoles } = Astro.props;
 ---
 
 <section class="section">
@@ -22,17 +23,34 @@ const { role, company, description, techStack } = Astro.props;
   </h2>
 
   <div class="mb-2">
-    <h3 class="text-[0.9375rem] font-semibold text-accent mb-1">{role}</h3>
+    <div class="flex items-center gap-3 mb-1">
+      {logo && (
+        <img src={logo} alt={company} class="h-6 w-auto object-contain mix-blend-multiply dark:mix-blend-normal dark:bg-white dark:rounded dark:px-1" />
+      )}
+      <h3 class="text-[0.9375rem] font-semibold text-accent">{role}</h3>
+    </div>
     <p class="text-[0.9375rem] text-accent mb-3">{company}</p>
   </div>
 
-  <p class="text-[0.9375rem] text-text-secondary leading-relaxed mb-5">{description}</p>
+  <p class="text-[0.9375rem] text-text-secondary leading-relaxed">{description}</p>
+</section>
 
-  <div>
-    <div class="flex flex-wrap gap-5">
-      {techStack.map((tech) => (
-        <TechIcon icon={tech.icon} name={tech.name ?? ''} loading="eager" />
+{previousRoles && previousRoles.length > 0 && (
+  <section class="section">
+    <h2 class="section-title">Previous Roles</h2>
+    <div class="space-y-8">
+      {previousRoles.map((prev) => (
+        <div>
+          <div class="flex items-center gap-3 mb-1">
+            {prev.logo && (
+              <img src={prev.logo} alt={prev.company} class="h-6 w-auto object-contain mix-blend-multiply dark:mix-blend-normal dark:bg-white dark:rounded dark:px-1" />
+            )}
+            <h3 class="text-[0.9375rem] font-semibold text-accent">{prev.role}</h3>
+          </div>
+          <p class="text-[0.9375rem] text-accent mb-3">{prev.company}</p>
+          <p class="text-[0.9375rem] text-text-secondary leading-relaxed">{prev.description}</p>
+        </div>
       ))}
     </div>
-  </div>
-</section>
+  </section>
+)}

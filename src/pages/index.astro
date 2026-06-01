@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Role from '../components/Role.astro';
+import TechStack from '../components/TechStack.astro';
 import Projects from '../components/Projects.astro';
 import Social from '../components/Social.astro';
 
@@ -23,15 +24,26 @@ const PERSONAL_INFO = {
   name: 'Eben Bentley',
   displayName: 'EBEN BENTLEY',
   title: 'Software Engineer',
-  company: 'Raytheon UK',
-  bio: 'Design and deliver end-to-end software systems: from backend services and APIs, to full-stack applications, data-intensive services, and cloud infrastructure. Experienced across Go, Python, Node.js, TypeScript, React, Kubernetes, Docker, Terraform, AWS, and Azure. I focus on scalable, resilient, and secure solutions that solve real-world problems.',
-  roleDescription: 'Develop and maintain full-stack systems, including high-availability backend services, REST APIs, microservices and cloud infrastructure',
+  company: 'Zaizi',
+  bio: 'Software engineer working on cybersecurity-focused systems where quality, security and reliability actually matter. I specialise in backend engineering and cloud infrastructure, delivering software that is built to last and built to perform.',
+  roleDescription: 'Backend services and cloud infrastructure, working primarily in Go and Java on AWS with a focus on infrastructure as code.',
 } as const;
+
+// Previous Roles
+const previousRoles = [
+  {
+    role: 'Software Engineer',
+    company: 'Raytheon UK',
+    logo: '/icons/raytheon.png',
+    description: 'Full-stack systems and cloud infrastructure across AWS and Azure.',
+  },
+];
 
 // Tech Stack
 const techStack: Tech[] = [
   // Languages
   { name: 'Go', icon: '/icons/go.svg' },
+  { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
   { name: 'Python', icon: '/icons/python.svg' },
   { name: 'TypeScript', icon: '/icons/typescript.png' },
 
@@ -74,31 +86,6 @@ const techStack: Tech[] = [
 // Projects
 const projects: Project[] = [
   {
-    name: 'Goroutines',
-    description: 'Concurrent programming examples and patterns in Go. Demonstrates goroutines, channels, mutexes, semaphores, and best practices for building scalable concurrent applications.',
-    githubUrl: 'https://github.com/Eben-Bentley/goroutines',
-    technologies: [
-      { name: 'Go', icon: '/icons/go.svg' },
-    ],
-  },
-  {
-    name: 'Snaphook',
-    description: 'Lightweight screenshot tool built with Go for Windows. Features include hotkey support, clipboard integration, and minimal resource usage. Demonstrates concurrent programming and Win32 API integration.',
-    githubUrl: 'https://github.com/Eben-Bentley/snaphook',
-    technologies: [
-      { name: 'Go', icon: '/icons/go.svg' },
-    ],
-  },
-  {
-    name: 'imgshare.lol',
-    description: 'Lightweight image sharing platform. Upload and share images instantly with a clean, minimal interface.',
-    githubUrl: 'https://www.imgshare.lol/',
-    technologies: [
-      { name: 'Next.js', icon: '/icons/next.png' },
-      { name: 'TypeScript', icon: '/icons/typescript.png' },
-    ],
-  },
-  {
     name: 'Portfolio Website',
     description: 'Modern portfolio website built with Astro and TailwindCSS. Features responsive design, dark mode support, and optimized performance with static site generation.',
     githubUrl: 'https://github.com/Eben-Bentley/Personal-Blog',
@@ -113,7 +100,7 @@ const projects: Project[] = [
 <Layout
   title={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
   name={PERSONAL_INFO.name}
-  description="Full-stack Software Engineer at Raytheon UK. Experienced in Go, Python, TypeScript, Kubernetes, and cloud platforms. View projects and skills."
+  description="Software Engineer at Zazi. Experienced in Go, Java, AWS, and infrastructure as code. View projects and skills."
 >
 <div class="container max-w-4xl mx-auto space-y-16">
 
@@ -126,9 +113,12 @@ const projects: Project[] = [
     <Role
       role={PERSONAL_INFO.title}
       company={PERSONAL_INFO.company}
+      logo="/icons/zaizi.jpg"
       description={PERSONAL_INFO.roleDescription}
-      techStack={techStack}
+      previousRoles={previousRoles}
     />
+
+    <TechStack techStack={techStack} />
 
     <Projects projects={projects} />
 

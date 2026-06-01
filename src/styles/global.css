@@ -171,228 +171,48 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   z-index: -1;
-  perspective: 1000px;
   margin-left: 250px;
   opacity: 0;
+  perspective: 800px;
   animation: fadeInUp 0.6s ease forwards;
   animation-delay: 0.1s;
 }
 
-.cube {
-  width: 100%;
-  height: 100%;
+.sphere {
+  width: 180px;
+  height: 180px;
   position: relative;
   transform-style: preserve-3d;
-  animation: rotateCube 35s infinite linear;
-  will-change: transform;
+  animation: rotateSphere 28s infinite linear;
 }
 
-.cube-face {
+.ring {
   position: absolute;
-  width: 160px;
-  height: 160px;
-  border: 2px solid var(--accent);
-  background: linear-gradient(135deg, var(--cube-bg-1), var(--cube-bg-2));
-  opacity: 0.6;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.orbit-circle {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 30% 30%, rgba(59, 130, 246, 0.95), rgba(96, 165, 250, 0.7), rgba(37, 99, 235, 0.4));
-  animation: lavaFloat1 15s ease-in-out infinite, blobMorph1 8s ease-in-out infinite, colorShift 20s ease-in-out infinite;
-  box-shadow:
-    0 0 40px rgba(59, 130, 246, 1),
-    0 0 80px rgba(59, 130, 246, 0.7),
-    0 0 120px rgba(59, 130, 246, 0.4),
-    inset 0 0 30px rgba(255, 255, 255, 0.4);
-  filter: blur(0.5px);
-  opacity: 0.85;
+  border: 1.5px solid var(--accent);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
 }
 
-.orbit-circle.delay-1 {
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(ellipse at 40% 40%, rgba(16, 185, 129, 0.95), rgba(52, 211, 153, 0.7), rgba(5, 150, 105, 0.4));
-  animation: lavaFloat2 18s ease-in-out infinite, blobMorph2 9s ease-in-out infinite, colorShiftGreen 22s ease-in-out infinite;
-  box-shadow:
-    0 0 45px rgba(16, 185, 129, 1),
-    0 0 90px rgba(16, 185, 129, 0.7),
-    0 0 130px rgba(16, 185, 129, 0.4),
-    inset 0 0 35px rgba(255, 255, 255, 0.4);
-  animation-delay: -6s, -3s, -7s;
-}
+.ring:nth-child(1) { transform: rotateY(0deg); }
+.ring:nth-child(2) { transform: rotateY(30deg); }
+.ring:nth-child(3) { transform: rotateY(60deg); }
+.ring:nth-child(4) { transform: rotateY(90deg); }
+.ring:nth-child(5) { transform: rotateY(120deg); }
+.ring:nth-child(6) { transform: rotateY(150deg); }
+.ring:nth-child(7) { transform: rotateX(90deg); }
+.ring:nth-child(8) { transform: rotateX(60deg); }
+.ring:nth-child(9) { transform: rotateX(120deg); }
 
-.orbit-circle.delay-2 {
-  width: 55px;
-  height: 55px;
-  background: radial-gradient(ellipse at 35% 35%, rgba(249, 115, 22, 0.95), rgba(251, 146, 60, 0.7), rgba(234, 88, 12, 0.4));
-  animation: lavaFloat3 20s ease-in-out infinite, blobMorph3 10s ease-in-out infinite, colorShiftOrange 24s ease-in-out infinite;
-  box-shadow:
-    0 0 50px rgba(249, 115, 22, 1),
-    0 0 100px rgba(249, 115, 22, 0.7),
-    0 0 140px rgba(249, 115, 22, 0.4),
-    inset 0 0 40px rgba(255, 255, 255, 0.4);
-  animation-delay: -12s, -5s, -10s;
-}
-
-@keyframes lavaFloat1 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(60px, -40px) rotate(90deg);
-  }
-  50% {
-    transform: translate(-30px, 50px) rotate(180deg);
-  }
-  75% {
-    transform: translate(-60px, -30px) rotate(270deg);
-  }
-}
-
-@keyframes lavaFloat2 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(-50px, 40px) rotate(120deg);
-  }
-  66% {
-    transform: translate(40px, -50px) rotate(240deg);
-  }
-}
-
-@keyframes lavaFloat3 {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  30% {
-    transform: translate(50px, 30px) rotate(100deg);
-  }
-  60% {
-    transform: translate(-40px, -40px) rotate(200deg);
-  }
-}
-
-@keyframes blobMorph1 {
-  0%, 100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-  }
-}
-
-@keyframes blobMorph2 {
-  0%, 100% {
-    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
-  }
-  50% {
-    border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%;
-  }
-}
-
-@keyframes blobMorph3 {
-  0%, 100% {
-    border-radius: 50% 50% 40% 60% / 50% 50% 60% 40%;
-  }
-  50% {
-    border-radius: 40% 60% 50% 50% / 60% 40% 50% 50%;
-  }
-}
-
-@keyframes colorShift {
-  0%, 100% {
-    filter: hue-rotate(0deg) brightness(1.1) saturate(1.3);
-  }
-  33% {
-    filter: hue-rotate(120deg) brightness(1.2) saturate(1.5);
-  }
-  66% {
-    filter: hue-rotate(240deg) brightness(1) saturate(1.2);
-  }
-}
-
-@keyframes colorShiftGreen {
-  0%, 100% {
-    filter: hue-rotate(0deg) brightness(1.1) saturate(1.3);
-  }
-  33% {
-    filter: hue-rotate(90deg) brightness(1.2) saturate(1.5);
-  }
-  66% {
-    filter: hue-rotate(180deg) brightness(1) saturate(1.2);
-  }
-}
-
-@keyframes colorShiftOrange {
-  0%, 100% {
-    filter: hue-rotate(0deg) brightness(1.1) saturate(1.3);
-  }
-  33% {
-    filter: hue-rotate(-90deg) brightness(1.2) saturate(1.5);
-  }
-  66% {
-    filter: hue-rotate(90deg) brightness(1) saturate(1.2);
-  }
-}
-
-@keyframes orbit {
-  0% {
-    transform: rotate(0deg) translateX(70px) rotate(0deg);
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(360deg) translateX(70px) rotate(-360deg);
-    opacity: 0.8;
-  }
-}
-
-.cube-face:nth-child(1) {
-  transform: rotateY(0deg) translateZ(80px);
-}
-
-.cube-face:nth-child(2) {
-  transform: rotateY(90deg) translateZ(80px);
-}
-
-.cube-face:nth-child(3) {
-  transform: rotateY(180deg) translateZ(80px);
-}
-
-.cube-face:nth-child(4) {
-  transform: rotateY(-90deg) translateZ(80px);
-}
-
-.cube-face:nth-child(5) {
-  transform: rotateX(90deg) translateZ(80px);
-}
-
-.cube-face:nth-child(6) {
-  transform: rotateX(-90deg) translateZ(80px);
-}
-
-@keyframes rotateCube {
-  from {
-    transform: rotate3d(1, 1, 0, 0deg);
-  }
-  to {
-    transform: rotate3d(1, 1, 0, 360deg);
-  }
+@keyframes rotateSphere {
+  from { transform: rotate3d(0.3, 1, 0.1, 0deg); }
+  to   { transform: rotate3d(0.3, 1, 0.1, 360deg); }
 }
 
 @media (max-width: 1200px) {
